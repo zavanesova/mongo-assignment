@@ -38,7 +38,6 @@ app.get("/scrape", function(req, res) {
             result.title = $(this).find("a").attr("title");
             result.link = $(this).find("a").attr("href");
             result.summary = $(this).find("div.excerpt").text();
-            result.saved = false;
             console.log(result);
 
             db.Article.create(result)
@@ -49,11 +48,20 @@ app.get("/scrape", function(req, res) {
                 console.log(err)
             });
         });
-        res.send("Scrape Complete");
+        // res.send("Scrape Complete");
     });
 });
 
 app.get ("/articles", function(req, res) {
+    db.Article.find({})
+    .then(function(dbArticle) {
+        res.json(dbArticle);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
+app.get ("/api/articles", function(req, res) {
     db.Article.find({})
     .then(function(dbArticle) {
         res.json(dbArticle);
@@ -74,8 +82,8 @@ app.get("/articles/:id", function(req, res) {
     })
 });
 
-app.put("/article/:id", function(req, res) {
-    db.Article.findOneAndUpdate({id: req.body.id}, {saved: true})
+app.put("/articles/:id", function(req, res) {
+    db.Article.findOneAndUpdate({id: req.body.id}, {$set:{saved: true}})
     .then(function(result) {
         res.json(result);
     });
@@ -95,31 +103,15 @@ app.post("/articles/:id", function(req, res) {
     });  
 });
 
-// $("#save").on("click", function() {
-//     app.post("/articles/:id", function(req, res) {
-//         db.Article.findOne({ _id: req.params.id })
-//         .then(function() {
-//             return db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true});
-//         })
-//         .then(function(dbArticle) {
-//             res.json(dbArticle);
-//         })
-//         .catch(function(err) {
-//             res.json(err);
-//         });
-//     });
-        
-// });
-
-// app.get ("/saved", function(req, res) {
-//     db.Article.find({ saved: true })
-//     .then(function(dbArticle) {
-//         res.json(dbArticle);
-//     })
-//     .catch(function(err) {
-//         res.json(err);
-//     });
-// });
+app.get ("/saved", function(req, res) {
+    db.Article.find({ saved: true })
+    .then(function(dbArticle) {
+        res.json(dbArticle);
+    })
+    .catch(function(err) {
+        res.json(err);
+    });
+});
 
 
 

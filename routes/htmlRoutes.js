@@ -16,4 +16,13 @@ module.exports = function(app) {
       })
   })
 
+  app.get("/saved", function(req, res) {
+      db.Article.find({})
+      .then(function(dbArticle) {
+          res.render("partials/saved", {dbArticle});
+      })
+      .catch(function(err) {
+          console.log(err);
+      })
+  })
 }

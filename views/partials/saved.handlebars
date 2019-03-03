@@ -6,8 +6,8 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="/">Home</a>
-      <a class="nav-item nav-link active" href="#">Articles <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/saved">Saved Articles</a>
+      <a class="nav-item nav-link" href="/articles">Articles</a>
+      <a class="nav-item nav-link active" href="#">Saved Articles <span class="sr-only">(current)</span></a>
     </div>
   </div>
 </nav>
@@ -18,7 +18,7 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Articles</th>
+                    <th scope="col"> Saved Articles</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                             <a href={{this.link}}>Read More</a>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-danger save" data-id={{this._id}}>Save Article</button>
+                            <button type="button" class="btn btn-success" data-id={{this._id}}>Add Note</button>
                         </div>
                       </div>
                     </td>
