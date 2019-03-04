@@ -7,7 +7,7 @@ var exphbs = require("express-handlebars");
 
 var db = require("./models")
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000
 var app = express();
 
 app.use(logger("dev"));
@@ -83,7 +83,13 @@ app.get("/articles/:id", function(req, res) {
 });
 
 app.put("/articles/:id", function(req, res) {
-    db.Article.findOneAndUpdate({id: req.body.id}, {$set:{saved: true}})
+    db.Article.findOneAndUpdate({
+        _id: req.params.id
+    }, {
+        $set:{
+            saved: true
+        }
+    })
     .then(function(result) {
         res.json(result);
     });
@@ -112,6 +118,16 @@ app.get ("/saved", function(req, res) {
         res.json(err);
     });
 });
+// app.get ("/saved/:id", function(req, res) {
+//     db.Article.findOne({ _id: req.params.id })
+//     .then(function(dbArticle) {
+//         res.json(dbArticle);
+//     })
+//     .catch(function(err) {
+//         res.json(err);
+//     });
+// });
+
 
 
 

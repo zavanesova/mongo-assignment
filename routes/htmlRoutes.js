@@ -17,7 +17,7 @@ module.exports = function(app) {
   })
 
   app.get("/saved", function(req, res) {
-      db.Article.find({})
+      db.Article.find({ saved: true })
       .then(function(dbArticle) {
           res.render("partials/saved", {dbArticle});
       })

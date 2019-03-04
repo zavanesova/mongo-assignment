@@ -1,0 +1,9 @@
+body{
+    background: white
+}
+.jumbotron{
+    background-image: url("linedpaper.png")
+}
+.display-4{
+    font-family: 'Patua One', cursive;
+}

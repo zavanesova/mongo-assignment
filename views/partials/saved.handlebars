@@ -18,7 +18,7 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col"> Saved Articles</th>
+                    <th scope="col">Saved Articles <i class="far fa-bookmark"></i></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                             <a href={{this.link}}>Read More</a>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-success" data-id={{this._id}}>Add Note</button>
+                            <button type="button" class="btn btn-success note" data-id={{this._id}}>Add Note <i class="far fa-sticky-note"></i></button>
                         </div>
                       </div>
                     </td>
@@ -40,4 +40,30 @@
             </table>
         </div>
     </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Note</h5>
+        <button type="button" class="close-note" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p class="prev-notes" data-id={{this._id}}></p>
+          <form>
+            <div class="form-group">
+                {{!-- <textarea class="form-control note" id="note" rows="3"></textarea> --}}
+                <input class="form-control" type="text" placeholder="Note">
+            </div>
+          </form>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-note" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save-note">Save Note</button>
+      </div>
+    </div>
+  </div>
 </div>
