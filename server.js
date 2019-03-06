@@ -7,7 +7,7 @@ var exphbs = require("express-handlebars");
 
 var db = require("./models")
 
-var PORT = process.env.PORT || 3000
+var PORT = process.env.PORT || 3000;
 var app = express();
 
 app.use(logger("dev"));
@@ -48,7 +48,14 @@ app.get("/scrape", function(req, res) {
                 console.log(err)
             });
         });
-        // res.send("Scrape Complete");
+        db.Article.find({})
+         .limit(15)
+         .then(function(dbArticle) {
+          res.render("partials/articles", {dbArticle});
+        })
+          .catch(function(err) {
+          console.log(err);
+        })
     });
 });
 
